@@ -12,6 +12,8 @@ use Uasoft\Badaso\Commands\BackupCommand;
 use Uasoft\Badaso\Commands\BadasoSetup;
 use Uasoft\Badaso\Commands\GenerateSeederCommand;
 use Uasoft\Badaso\Facades\Badaso as FacadesBadaso;
+use UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider;
+use Intervention\Image\ImageServiceProvider;
 
 class BadasoServiceProvider extends ServiceProvider
 {
@@ -29,37 +31,37 @@ class BadasoServiceProvider extends ServiceProvider
             return new Badaso();
         });
 
-        $this->loadMigrationsFrom(__DIR__.'/../Migrations');
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'badaso');
-        $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
-        $this->loadRoutesFrom(__DIR__.'/../Routes/api.php');
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'badaso');
+        $this->loadMigrationsFrom(__DIR__ . '/../Migrations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'badaso');
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'badaso');
 
         $this->publishes([
-            __DIR__.'/../Config/badaso.php' => config_path('badaso.php'),
-            __DIR__.'/../Config/log-viewer.php' => config_path('log-viewer.php'),
-            __DIR__.'/../Config/backup.php' => config_path('backup.php'),
-            __DIR__.'/../Seeder/Configurations' => database_path('seeds'),
-            __DIR__.'/../Seeder/CRUDData' => database_path('seeds/CRUDData'),
-            __DIR__.'/../Images/' => public_path(),
-            __DIR__.'/../resources/customization/' => resource_path('js/badaso'),
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/badaso'),
+            __DIR__ . '/../Config/badaso.php' => config_path('badaso.php'),
+            __DIR__ . '/../Config/log-viewer.php' => config_path('log-viewer.php'),
+            __DIR__ . '/../Config/backup.php' => config_path('backup.php'),
+            __DIR__ . '/../Seeder/Configurations' => database_path('seeds'),
+            __DIR__ . '/../Seeder/CRUDData' => database_path('seeds/CRUDData'),
+            __DIR__ . '/../Images/' => public_path(),
+            __DIR__ . '/../resources/customization/' => resource_path('js/badaso'),
+            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/badaso'),
         ], 'Badaso');
 
         $this->publishes([
-            __DIR__.'/../Config/badaso.php' => config_path('badaso.php'),
-            __DIR__.'/../Config/log-viewer.php' => config_path('log-viewer.php'),
-            __DIR__.'/../Config/backup.php' => config_path('backup.php'),
+            __DIR__ . '/../Config/badaso.php' => config_path('badaso.php'),
+            __DIR__ . '/../Config/log-viewer.php' => config_path('log-viewer.php'),
+            __DIR__ . '/../Config/backup.php' => config_path('backup.php'),
         ], 'BadasoConfig');
 
         $this->publishes([
-            __DIR__.'/../Seeder/Configurations' => database_path('seeds'),
-            __DIR__.'/../Seeder/CRUDData' => database_path('seeds/CRUDData'),
+            __DIR__ . '/../Seeder/Configurations' => database_path('seeds'),
+            __DIR__ . '/../Seeder/CRUDData' => database_path('seeds/CRUDData'),
         ], 'BadasoSeeder');
 
         $this->publishes([
-            __DIR__.'/../resources/customization/' => resource_path('js/badaso'),
-            __DIR__.'/../Images/' => public_path(),
+            __DIR__ . '/../resources/customization/' => resource_path('js/badaso'),
+            __DIR__ . '/../Images/' => public_path(),
             // __DIR__.'/../resources/lang' => resource_path('lang/vendor/badaso'),
         ], 'BadasoResource');
     }
@@ -76,6 +78,8 @@ class BadasoServiceProvider extends ServiceProvider
         $this->app->register(DropboxServiceProvider::class);
         $this->app->register(GoogleDriveServiceProvider::class);
         $this->app->register(LogViewerServiceProvider::class);
+        $this->app->register(LaravelFilemanagerServiceProvider::class);
+        $this->app->register(ImageServiceProvider::class);
         $this->registerConsoleCommands();
     }
 
