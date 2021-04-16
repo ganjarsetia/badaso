@@ -8,6 +8,10 @@ let log_viewer = process.env.MIX_LOG_VIEWER_ROUTE
   ? process.env.MIX_LOG_VIEWER_ROUTE
   : "log-viewer";
 
+let media_manager = process.env.MIX_FILE_MANAGER_PREFIX_ROUTE
+  ? process.env.MIX_FILE_MANAGER_PREFIX_ROUTE
+  : "/media-manager";
+
 export default [
   {
     path: prefix + "/permission",
@@ -259,6 +263,16 @@ export default [
     name: "LogViewer",
     beforeEnter() {
       location.href = "/" + log_viewer;
+    },
+    meta: {
+      title: "Browse Log Viewer",
+    },
+  },
+  {
+    path: prefix + "/" + media_manager,
+    name: "MediaManager",
+    beforeEnter() {
+      location.href = "/" + media_manager;
     },
     meta: {
       title: "Browse Log Viewer",

@@ -43,7 +43,7 @@
         <vs-select
           v-model="selectedLang"
           width="100%"
-          style="padding: 10px;"
+          style="padding: 10px"
           v-if="view == $constants.MOBILE"
         >
           <vs-select-item
