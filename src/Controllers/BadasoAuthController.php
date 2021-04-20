@@ -433,9 +433,11 @@ class BadasoAuthController extends Controller
                 'name' => 'required',
                 'avatar' => [
                     function ($attribute, $value, $fail) {
-                        $check = new CheckBase64($value);
-                        if (!$check->isValid()) {
-                            $fail($check->getMessage());
+                        if ($value) {
+                            $check = new CheckBase64($value);
+                            if (!$check->isValid()) {
+                                $fail($check->getMessage());
+                            }
                         }
                     },
                 ],
@@ -445,6 +447,7 @@ class BadasoAuthController extends Controller
 
             $user->name = $request->name;
             $uploaded = null;
+<<<<<<< HEAD
             if ($request->avatar && $request->avatar != '') {
                 $extension = explode('/', explode(';', $request->avatar)[0])[1];
                 $files = [];
@@ -456,8 +459,28 @@ class BadasoAuthController extends Controller
                 if (count($uploaded) > 0) {
                     $uploaded = $uploaded[0];
                     $this->handleDeleteFile($user->avatar);
+=======
+            if (array_key_exists('avatar', $request->all())) {
+                if ($request->avatar && $request->avatar != '') {
+                    $extension = explode('/', explode(';', $request->avatar)[0])[1];
+                    $files = [];
+                    $files[] = [
+                        'base64' => $request->avatar,
+                        'name' => Str::slug($request->name).'.'.$extension,
+                    ];
+                    $uploaded = $this->handleUploadFiles($files, null, 'users');
+                    if (count($uploaded) > 0) {
+                        $uploaded = $uploaded[0];
+                        $this->handleDeleteFile($user->avatar);
+                    }
+                    $user->avatar = $uploaded;
+                } else {
+                    if ($user->avatar != 'users/default.png') {
+                        $this->handleDeleteFile($user->avatar);
+                    }
+                    $user->avatar = null;
+>>>>>>> fc639d0906f1e20596d482c35f1319bc4f23e743
                 }
-                $user->avatar = $uploaded;
             }
             $user->additional_info = $request->additional_info;
             $user->save();
