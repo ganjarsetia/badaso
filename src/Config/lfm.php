@@ -89,13 +89,6 @@ return [
     | Upload / Validation
     |--------------------------------------------------------------------------
      */
-    'route_prefix'             => env('MIX_FILE_MANAGER_PREFIX_ROUTE', 'laravel-filemanager'),
-
-    'middleware'               => [
-        'web',
-        // \Uasoft\Badaso\Middleware\BadasoCheckPermissions::class . ':browse_media_manager'
-    ],
-    // example default auth middleware => ['web', 'auth']
 
     'disk'                     => 'public',
 
@@ -173,4 +166,40 @@ return [
     'php_ini_overrides'        => [
         'memory_limit' => '256M',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | default prefix route
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'route_prefix'             => env('MIX_FILE_MANAGER_PREFIX_ROUTE', 'media-manager'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | authenticate
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    // Example default auth middleware => ['web', 'auth']
+    'middleware'               => [
+        'web',
+        'auth',
+        Uasoft\Badaso\Middleware\BadasoCheckPermissions::class . ":browse_media_manager",
+    ],
+
+    // Guard default value => web 
+    'guard_name'               => 'badaso_guard',
+
+    // Key name token auth in local storage
+    // If you do not use authenticate with a token default value is null
+    // Location : browser => inspect element => application => Local Storage
+    'key_auth_token'           => 'token',
+
+    // If not authenticate redirect to
+    // Default value => /login
+    'no_authenticate_token_redirect_to' =>  env('MIX_ADMIN_PANEL_ROUTE_PREFIX', '/dashboard/login'),
+
 ];

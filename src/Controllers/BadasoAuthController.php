@@ -450,7 +450,7 @@ class BadasoAuthController extends Controller
                 $files = [];
                 $files[] = [
                     'base64' => $request->avatar,
-                    'name' => Str::slug($request->name).'.'.$extension,
+                    'name' => Str::slug($request->name) . '.' . $extension,
                 ];
                 $uploaded = $this->handleUploadFiles($files, null, 'users');
                 if (count($uploaded) > 0) {

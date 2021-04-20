@@ -12,8 +12,6 @@ use Uasoft\Badaso\Commands\BackupCommand;
 use Uasoft\Badaso\Commands\BadasoSetup;
 use Uasoft\Badaso\Commands\GenerateSeederCommand;
 use Uasoft\Badaso\Facades\Badaso as FacadesBadaso;
-use UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider;
-use Intervention\Image\ImageServiceProvider;
 
 class BadasoServiceProvider extends ServiceProvider
 {
@@ -41,6 +39,7 @@ class BadasoServiceProvider extends ServiceProvider
             __DIR__ . '/../Config/badaso.php' => config_path('badaso.php'),
             __DIR__ . '/../Config/log-viewer.php' => config_path('log-viewer.php'),
             __DIR__ . '/../Config/backup.php' => config_path('backup.php'),
+            __DIR__ . '/../Config/lfm.php' => config_path('lfm.php'),
             __DIR__ . '/../Seeder/Configurations' => database_path('seeds'),
             __DIR__ . '/../Seeder/CRUDData' => database_path('seeds/CRUDData'),
             __DIR__ . '/../Images/' => public_path(),
@@ -52,6 +51,7 @@ class BadasoServiceProvider extends ServiceProvider
             __DIR__ . '/../Config/badaso.php' => config_path('badaso.php'),
             __DIR__ . '/../Config/log-viewer.php' => config_path('log-viewer.php'),
             __DIR__ . '/../Config/backup.php' => config_path('backup.php'),
+            __DIR__ . '/../Config/lfm.php' => config_path('lfm.php'),
         ], 'BadasoConfig');
 
         $this->publishes([
@@ -78,8 +78,6 @@ class BadasoServiceProvider extends ServiceProvider
         $this->app->register(DropboxServiceProvider::class);
         $this->app->register(GoogleDriveServiceProvider::class);
         $this->app->register(LogViewerServiceProvider::class);
-        $this->app->register(LaravelFilemanagerServiceProvider::class);
-        $this->app->register(ImageServiceProvider::class);
         $this->registerConsoleCommands();
     }
 

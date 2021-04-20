@@ -95,7 +95,7 @@ class BadasoSetup extends Command
 
         if ($this->checkExist($mix_file, $search)) {
             $data =
-        <<<EOT
+                <<<EOT
 
         // Badaso
         mix
