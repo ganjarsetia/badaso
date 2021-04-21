@@ -1,45 +1,93 @@
 {
-    "version": "1.0.0-alpha.29",
-    "name": "uasoft-indonesia/badaso",
-    "description": "The First Open-Source Laravel Vue headless CMS (PWA dashboard + CRUD + API generator & more) for more productivity !",
-    "keywords": ["laravel", "admin", "panel", "dashboard", "pwa", "vue", "generator"],
-    "license": "proprietary",
-    "homepage": "https://badaso.uatech.co.id/",
-    "support": {
-        "issues": "https://github.com/uasoft-indonesia/badaso/issues",
-        "discussion": "https://github.com/uasoft-indonesia/badaso/discussions",
-        "source": "https://github.com/uasoft-indonesia/voyager"
-    },
-    "type": "library",
-    "require": {
-        "webpatser/laravel-uuid": "^3.0",
-        "doctrine/dbal": "2.12",
-        "tymon/jwt-auth": "^1.0",
-        "lcobucci/jwt": "3.3",
-        "larapack/doctrine-support": "~0.1.4",
-        "arcanedev/log-viewer": "4.2.0",
-        "spatie/laravel-activitylog": "3.2.2",
-        "spatie/laravel-backup":"5.12.1",
-        "spatie/flysystem-dropbox": "1.2.2",
-        "nao-pon/flysystem-google-drive": "1.1.13",
-        "league/flysystem-aws-s3-v3": "1.0.28",
-        "guzzlehttp/guzzle": "6.5.5"
-    },
-    "authors": [{
-        "name": "UASOFT",
-        "email": "hello@uatech.co.id"
-    }],
-    "minimum-stability": "alpha",
-    "autoload": {
-        "psr-4": {
-            "Uasoft\\Badaso\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
+  "version": "1.0.0-alpha.29",
+  "name": "uasoft-indonesia/badaso",
+  "description": "The First Open-Source Laravel Vue headless CMS (PWA dashboard + CRUD + API generator & more) for more productivity !",
+  "keywords": [
+    "laravel",
+    "admin",
+    "panel",
+    "dashboard",
+    "pwa",
+    "vue",
+    "generator"
+  ],
+  "license": "proprietary",
+  "homepage": "https://badaso.uatech.co.id/",
+  "support": {
+    "issues": "https://github.com/uasoft-indonesia/badaso/issues",
+    "discussion": "https://github.com/uasoft-indonesia/badaso/discussions",
+    "source": "https://github.com/uasoft-indonesia/voyager"
+  },
+  "type": "library",
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "uasoft-indonesia/laravel-filemanager",
+        "version": "master",
+        "source": {
+          "url": "https://github.com/uasoft-indonesia/laravel-filemanager.git",
+          "type": "git",
+          "reference": "feature/authenticate_token"
+        },
+        "autoload": {
+          "psr-4": {
+            "UniSharp\\LaravelFilemanager\\": "src/"
+          }
+        },
+        "extra": {
+          "laravel": {
             "providers": [
-                "Uasoft\\Badaso\\Providers\\BadasoServiceProvider"
-            ]
+              "UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider"
+            ],
+            "aliases": {}
+          }
+        },
+        "require": {
+          "ext-exif": "*",
+          "ext-fileinfo": "*",
+          "intervention/image": "2.*",
+          "illuminate/config": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0 || ^8.0",
+          "illuminate/filesystem": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0 || ^8.0",
+          "illuminate/support": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0 || ^8.0",
+          "illuminate/http": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0 || ^8.0",
+          "illuminate/container": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0 || ^8.0"
         }
+      }
     }
+  ],
+  "require": {
+    "webpatser/laravel-uuid": "^3.0",
+    "doctrine/dbal": "2.12",
+    "tymon/jwt-auth": "^1.0",
+    "lcobucci/jwt": "3.3",
+    "larapack/doctrine-support": "~0.1.4",
+    "arcanedev/log-viewer": "4.2.0",
+    "spatie/laravel-activitylog": "3.2.2",
+    "spatie/laravel-backup": "5.12.1",
+    "spatie/flysystem-dropbox": "1.2.2",
+    "nao-pon/flysystem-google-drive": "1.1.13",
+    "league/flysystem-aws-s3-v3": "1.0.28",
+    "guzzlehttp/guzzle": "6.5.5",
+    "uasoft-indonesia/laravel-filemanager": "master"
+  },
+  "authors": [
+    {
+      "name": "UASOFT",
+      "email": "hello@uatech.co.id"
+    }
+  ],
+  "minimum-stability": "alpha",
+  "autoload": {
+    "psr-4": {
+      "Uasoft\\Badaso\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Uasoft\\Badaso\\Providers\\BadasoServiceProvider"
+      ]
+    }
+  }
 }

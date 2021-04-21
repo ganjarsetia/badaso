@@ -447,26 +447,13 @@ class BadasoAuthController extends Controller
 
             $user->name = $request->name;
             $uploaded = null;
-<<<<<<< HEAD
-            if ($request->avatar && $request->avatar != '') {
-                $extension = explode('/', explode(';', $request->avatar)[0])[1];
-                $files = [];
-                $files[] = [
-                    'base64' => $request->avatar,
-                    'name' => Str::slug($request->name) . '.' . $extension,
-                ];
-                $uploaded = $this->handleUploadFiles($files, null, 'users');
-                if (count($uploaded) > 0) {
-                    $uploaded = $uploaded[0];
-                    $this->handleDeleteFile($user->avatar);
-=======
             if (array_key_exists('avatar', $request->all())) {
                 if ($request->avatar && $request->avatar != '') {
                     $extension = explode('/', explode(';', $request->avatar)[0])[1];
                     $files = [];
                     $files[] = [
                         'base64' => $request->avatar,
-                        'name' => Str::slug($request->name).'.'.$extension,
+                        'name' => Str::slug($request->name) . '.' . $extension,
                     ];
                     $uploaded = $this->handleUploadFiles($files, null, 'users');
                     if (count($uploaded) > 0) {
@@ -479,7 +466,6 @@ class BadasoAuthController extends Controller
                         $this->handleDeleteFile($user->avatar);
                     }
                     $user->avatar = null;
->>>>>>> fc639d0906f1e20596d482c35f1319bc4f23e743
                 }
             }
             $user->additional_info = $request->additional_info;

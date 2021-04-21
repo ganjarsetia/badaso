@@ -5,6 +5,7 @@ namespace Uasoft\Badaso\Providers;
 use Arcanedev\LogViewer\LogViewerServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Intervention\Image\ImageServiceProvider;
 use Larapack\DoctrineSupport\DoctrineSupportServiceProvider;
 use Uasoft\Badaso\Badaso;
 use Uasoft\Badaso\Commands\AdminCommand;
@@ -12,6 +13,7 @@ use Uasoft\Badaso\Commands\BackupCommand;
 use Uasoft\Badaso\Commands\BadasoSetup;
 use Uasoft\Badaso\Commands\GenerateSeederCommand;
 use Uasoft\Badaso\Facades\Badaso as FacadesBadaso;
+use UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider;
 
 class BadasoServiceProvider extends ServiceProvider
 {
@@ -78,6 +80,9 @@ class BadasoServiceProvider extends ServiceProvider
         $this->app->register(DropboxServiceProvider::class);
         $this->app->register(GoogleDriveServiceProvider::class);
         $this->app->register(LogViewerServiceProvider::class);
+        $this->app->register(LaravelFilemanagerServiceProvider::class);
+        $this->app->register(ImageServiceProvider::class);
+
         $this->registerConsoleCommands();
     }
 

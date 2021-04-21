@@ -47,6 +47,7 @@ class BadasoSetup extends Command
         $this->publishBadasoProvider();
         $this->publishLaravelBackupProvider();
         $this->publishLaravelActivityLogProvider();
+        $this->publishLaravelFileManager();
         $this->uploadDefaultUserImage();
     }
 
@@ -143,6 +144,15 @@ class BadasoSetup extends Command
         ]);
 
         $this->info('Laravel activity log provider published');
+    }
+
+    protected function publishLaravelFileManager()
+    {
+        Artisan::call('vendor:publish', [
+            '--tag' => 'lfm_public',
+        ]);
+
+        $this->info('Laravel file manager provider published');
     }
 
     protected function uploadDefaultUserImage()

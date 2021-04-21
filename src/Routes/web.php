@@ -2,7 +2,9 @@
 
 $prefix = \config('lfm.route_prefix');
 Route::group(compact('prefix'), function () {
-    UniSharp\LaravelFilemanager\Lfm::routes();
+    if (class_exists("\\UniSharp\\LaravelFilemanager\\Lfm")) {
+        UniSharp\LaravelFilemanager\Lfm::routes();
+    }
 });
 
 $admin_panel_route_prefix = \config('badaso.admin_panel_route_prefix');
